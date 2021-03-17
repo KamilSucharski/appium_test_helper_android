@@ -22,10 +22,10 @@
                     android:id="@+id/test_mode_switch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:switchPadding="8dp"
-                    android:text="@string/test_mode"
                     android:clickable="false"
-                    android:focusable="false"/>
+                    android:focusable="false"
+                    android:switchPadding="8dp"
+                    android:text="@string/test_mode" />
 
             </RelativeLayout>
 
@@ -34,39 +34,11 @@
                 android:layout_height="1dp"
                 android:background="@android:color/black" />
 
-            <EditText
-                android:id="@+id/package_names_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:gravity="top"
-                android:hint="@string/package_names_hint"
-                android:importantForAutofill="no"
-                android:inputType="textVisiblePassword|textMultiLine"
-                android:lines="10"/>
-
-            <Button
-                android:id="@+id/save_package_names_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/save_package_names" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:text="@string/test_mode_instructions" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/black" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="@string/package_names_instructions" />
 
             <View
                 android:layout_width="match_parent"
