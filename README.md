@@ -1,5 +1,5 @@
 ### Appium Test Helper Android  
-Get the most of Appium with this installed next to your tested app.  
+<img src="web/screenshot_1.png" alt="screenshot 1" width="175" />&nbsp;<img src="web/screenshot_2.png" alt="screenshot 2" width="175" />   
   
 ##### Test mode  
 The value set here is returned to other apps through a content provider. It can be used to disable analytics during automated testing.  
@@ -13,4 +13,4 @@ adb shell am broadcast -a com.sengami.appium_test_helper_android.toast --es mess
 Will vibrate the device for 2 seconds when the command below is used through ADB.  
 adb shell am broadcast -a com.sengami.appium_test_helper_android.vibration --el duration 2000 -n com.sengami.appium_test_helper_android/.VibrationBroadcastReceiver  
   
-[Download now on Google Play Store](https://play.google.com/store/apps/details?id=com.iamsteve.android)
+[Download now on Google Play Store](https://play.google.com/store/apps/details?id=com.sengami.appium_test_helper_android)
