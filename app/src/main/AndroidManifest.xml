@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-        android:name=".App"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -26,7 +25,9 @@
         <provider
             android:name=".TestModeContentProvider"
             android:authorities="com.sengami.appium_test_helper_android.provider"
+            android:enabled="true"
             android:exported="true"
+            android:multiprocess="true"
             tools:ignore="ExportedContentProvider" />
 
         <receiver

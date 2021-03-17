@@ -29,19 +29,12 @@ class MainActivity : Activity() {
                 ).show()
             }
 
-        App.sharedPreferences?.let { sharedPreferences ->
-            binding.testModeSwitch.isChecked = sharedPreferences.getBoolean(
-                Consts.KEY_TEST_MODE_ENABLED,
-                false
-            )
-            binding.testModeContainer.setOnClickListener {
-                val newState = !binding.testModeSwitch.isChecked
-                sharedPreferences
-                    .edit()
-                    .putBoolean(Consts.KEY_TEST_MODE_ENABLED, newState)
-                    .commit()
-                binding.testModeSwitch.isChecked = newState
-            }
+        val localStorage = LocalStorage.fromContext(this)
+        binding.testModeSwitch.isChecked = localStorage.isTestModeEnabled()
+        binding.testModeContainer.setOnClickListener {
+            val newState = !localStorage.isTestModeEnabled()
+            localStorage.setTestModeEnabled(newState)
+            binding.testModeSwitch.isChecked = newState
         }
     }
 }

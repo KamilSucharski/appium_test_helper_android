@@ -5,6 +5,7 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.database.MatrixCursor
 import android.net.Uri
+import android.util.Log
 
 class TestModeContentProvider : ContentProvider() {
 
@@ -15,8 +16,9 @@ class TestModeContentProvider : ContentProvider() {
         strings1: Array<String>?,
         s1: String?
     ): Cursor? {
-        return App.sharedPreferences?.let { sharedPreferences ->
-            val testModeEnabled = sharedPreferences.getBoolean(Consts.KEY_TEST_MODE_ENABLED, true)
+        return context?.run {
+            val localStorage = LocalStorage.fromContext(this)
+            val testModeEnabled = localStorage.isTestModeEnabled()
             val cursor = MatrixCursor(arrayOf(Consts.KEY_TEST_MODE_ENABLED))
             cursor.addRow(arrayOf(testModeEnabled.toString()))
             cursor

@@ -7,7 +7,7 @@ object Consts {
 
     // Content Providers and Broadcast Receivers
     const val CONTENT_PROVIDER_URI = "content://com.sengami.appium_test_helper_android.provider/"
-    const val CONTENT_PROVIDER_TYPE = "appium-type"
+    const val CONTENT_PROVIDER_TYPE = "dummy-type"
     const val TOAST_MESSAGE_KEY = "message"
     const val VIBRATION_DURATION_KEY = "duration"
 
