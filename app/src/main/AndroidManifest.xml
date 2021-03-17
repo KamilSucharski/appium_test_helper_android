@@ -4,6 +4,7 @@
     package="com.sengami.appium_test_helper_android">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:name=".App"
@@ -13,29 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true">
 
-        <provider
-            android:name="com.sengami.appium_test_helper_android.SimpleContentProvider"
-            android:authorities="com.sengami.appium_test_helper_android.provider"
-            android:exported="true"
-            tools:ignore="ExportedContentProvider" />
-
-        <receiver
-            android:name="com.sengami.appium_test_helper_android.ToastBroadcastReceiver"
-            android:enabled="true">
-            <intent-filter android:priority="999">
-                <action android:name="com.sengami.appium_test_helper_android.toast" />
-            </intent-filter>
-        </receiver>
-
-        <receiver
-            android:name="com.sengami.appium_test_helper_android.VibrationBroadcastReceiver"
-            android:enabled="true">
-            <intent-filter android:priority="999">
-                <action android:name="com.sengami.appium_test_helper_android.vibration" />
-            </intent-filter>
-        </receiver>
-
-        <activity android:name="com.sengami.appium_test_helper_android.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -44,6 +23,29 @@
             </intent-filter>
         </activity>
 
+        <provider
+            android:name=".TestModeContentProvider"
+            android:authorities="com.sengami.appium_test_helper_android.provider"
+            android:exported="true"
+            tools:ignore="ExportedContentProvider" />
+
+        <receiver
+            android:name=".ToastBroadcastReceiver"
+            android:enabled="true">
+            <intent-filter android:priority="999">
+                <action android:name="com.sengami.appium_test_helper_android.toast" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".VibrationBroadcastReceiver"
+            android:enabled="true">
+            <intent-filter android:priority="999">
+                <action android:name="com.sengami.appium_test_helper_android.vibration" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".NotificationService" />
     </application>
 
 </manifest>

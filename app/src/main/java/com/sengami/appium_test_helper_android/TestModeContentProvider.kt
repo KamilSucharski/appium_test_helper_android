@@ -8,7 +8,7 @@ import android.net.Uri
 import android.preference.PreferenceManager
 import android.widget.Toast
 
-class SimpleContentProvider : ContentProvider() {
+class TestModeContentProvider : ContentProvider() {
 
     override fun query(
         uri: Uri,

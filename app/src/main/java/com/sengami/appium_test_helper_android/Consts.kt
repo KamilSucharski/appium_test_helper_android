@@ -10,4 +10,8 @@ object Consts {
     const val CONTENT_PROVIDER_TYPE = "appium-type"
     const val TOAST_MESSAGE_KEY = "message"
     const val VIBRATION_DURATION_KEY = "duration"
+
+    // Extra
+    const val EXTRA_LONG_VIBRATION_DURATION = "EXTRA_LONG_VIBRATION_DURATION"
+    const val EXTRA_BOOLEAN_STOP_COMMAND = "EXTRA_BOOLEAN_STOP_COMMAND"
 }

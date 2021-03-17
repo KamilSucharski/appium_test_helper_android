@@ -10,7 +10,7 @@ import android.os.Vibrator
 
 /**
  * Will vibrate the device for 2 seconds when the command below is used through ADB
- * adb shell am broadcast -a com.sengami.appium_test_helper_android.vibration --el duration 2000
+ * adb shell am broadcast -a com.sengami.appium_test_helper_android.vibration --el duration 2000 -n com.sengami.appium_test_helper_android/.VibrationBroadcastReceiver
  */
 class VibrationBroadcastReceiver : BroadcastReceiver() {
 
@@ -20,7 +20,10 @@ class VibrationBroadcastReceiver : BroadcastReceiver() {
         .run {
             val duration = intent.getLongExtra(Consts.VIBRATION_DURATION_KEY, 1000)
             if (Build.VERSION.SDK_INT >= 26) {
-                vibrate(VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE))
+                val serviceIntent = Intent(context, NotificationService::class.java)
+                serviceIntent.putExtra(Consts.EXTRA_LONG_VIBRATION_DURATION, duration)
+                context.startForegroundService(serviceIntent)
+                Unit
             } else {
                 vibrate(duration)
             }
