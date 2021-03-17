@@ -5,8 +5,6 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.database.MatrixCursor
 import android.net.Uri
-import android.preference.PreferenceManager
-import android.widget.Toast
 
 class TestModeContentProvider : ContentProvider() {
 
@@ -18,8 +16,8 @@ class TestModeContentProvider : ContentProvider() {
         s1: String?
     ): Cursor? {
         return App.sharedPreferences?.let { sharedPreferences ->
-            val testModeEnabled = sharedPreferences.getBoolean(Consts.TEST_MODE_ENABLED, true)
-            val cursor = MatrixCursor(arrayOf(Consts.TEST_MODE_ENABLED))
+            val testModeEnabled = sharedPreferences.getBoolean(Consts.KEY_TEST_MODE_ENABLED, true)
+            val cursor = MatrixCursor(arrayOf(Consts.KEY_TEST_MODE_ENABLED))
             cursor.addRow(arrayOf(testModeEnabled.toString()))
             cursor
         }

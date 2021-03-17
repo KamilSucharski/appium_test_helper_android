@@ -31,14 +31,14 @@ class MainActivity : Activity() {
 
         App.sharedPreferences?.let { sharedPreferences ->
             binding.testModeSwitch.isChecked = sharedPreferences.getBoolean(
-                Consts.TEST_MODE_ENABLED,
+                Consts.KEY_TEST_MODE_ENABLED,
                 false
             )
             binding.testModeContainer.setOnClickListener {
                 val newState = !binding.testModeSwitch.isChecked
                 sharedPreferences
                     .edit()
-                    .putBoolean(Consts.TEST_MODE_ENABLED, newState)
+                    .putBoolean(Consts.KEY_TEST_MODE_ENABLED, newState)
                     .commit()
                 binding.testModeSwitch.isChecked = newState
             }
