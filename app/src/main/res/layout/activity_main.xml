@@ -23,7 +23,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:switchPadding="8dp"
-                    android:text="@string/test_mode" />
+                    android:text="@string/test_mode"
+                    android:clickable="false"
+                    android:focusable="false"/>
 
             </RelativeLayout>
 
@@ -36,11 +38,13 @@
                 android:id="@+id/package_names_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:gravity="top"
                 android:hint="@string/package_names_instructions"
                 android:importantForAutofill="no"
                 android:inputType="textVisiblePassword|textMultiLine"
-                android:lines="5" />
+                android:lines="5"
+                android:textAllCaps="true"/>
 
             <Button
                 android:id="@+id/save_package_names_button"
