@@ -42,24 +42,37 @@ class MainActivity : Activity() {
 
         localStorage
             .getPackageNames()
-            .joinToString(separator = "\n")
+            .joinToString(separator = Consts.PACKAGE_NAME_SEPARATOR)
             .run(binding.packageNamesEditText::setText)
 
+        saveCurrentPackageNames(binding, localStorage)
+
         binding.savePackageNamesButton.setOnClickListener {
-            binding
-                .packageNamesEditText
-                .text
-                .split("\n")
-                .let { packageNames ->
-                    localStorage.setPackageNames(packageNames)
-                    packageNames.forEach { packageName ->
-                        grantUriPermission(
-                            packageName.toLowerCase(Locale.getDefault()),
-                            Uri.parse(Consts.CONTENT_PROVIDER_URI),
-                            Intent.FLAG_GRANT_READ_URI_PERMISSION
-                        )
-                    }
-                }
+            saveCurrentPackageNames(binding, localStorage)
         }
+    }
+
+    private fun saveCurrentPackageNames(binding: ActivityMainBinding, localStorage: LocalStorage) {
+        binding
+            .packageNamesEditText
+            .text
+            .split(Consts.PACKAGE_NAME_SEPARATOR)
+            .map { it.trim().toLowerCase(Locale.getDefault()) }
+            .let { packageNames ->
+                localStorage.setPackageNames(packageNames)
+                packageNames.forEach { packageName ->
+                    grantUriPermission(
+                        packageName,
+                        Uri.parse(Consts.CONTENT_PROVIDER_URI),
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    )
+                }
+            }
+
+        Toast.makeText(
+            this,
+            R.string.message_package_names_set,
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

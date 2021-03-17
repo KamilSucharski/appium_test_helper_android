@@ -15,4 +15,7 @@ object Consts {
     // Extra
     const val EXTRA_LONG_VIBRATION_DURATION = "EXTRA_LONG_VIBRATION_DURATION"
     const val EXTRA_BOOLEAN_STOP_COMMAND = "EXTRA_BOOLEAN_STOP_COMMAND"
+
+    // Other
+    const val PACKAGE_NAME_SEPARATOR = "\n"
 }

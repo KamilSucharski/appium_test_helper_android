@@ -15,7 +15,7 @@
             <RelativeLayout
                 android:id="@+id/test_mode_container"
                 android:layout_width="match_parent"
-                android:layout_height="128dp"
+                android:layout_height="64dp"
                 android:gravity="center">
 
                 <Switch
@@ -40,11 +40,10 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:gravity="top"
-                android:hint="@string/package_names_instructions"
+                android:hint="@string/package_names_hint"
                 android:importantForAutofill="no"
                 android:inputType="textVisiblePassword|textMultiLine"
-                android:lines="5"
-                android:textAllCaps="true"/>
+                android:lines="10"/>
 
             <Button
                 android:id="@+id/save_package_names_button"
@@ -67,6 +66,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:text="@string/package_names_instructions" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
                 android:text="@string/toast_instructions" />
 
             <View
@@ -79,11 +89,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:text="@string/vibration_instructions" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/black" />
 
         </LinearLayout>
 
