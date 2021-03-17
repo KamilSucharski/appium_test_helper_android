@@ -4,6 +4,7 @@ object Consts {
     // Shared Preferences
     const val SHARED_PREFERENCES_NAME = "SHARED_PREFERENCES"
     const val KEY_TEST_MODE_ENABLED = "KEY_TEST_MODE_ENABLED"
+    const val KEY_PACKAGE_NAMES = "KEY_PACKAGE_NAMES"
 
     // Content Providers and Broadcast Receivers
     const val CONTENT_PROVIDER_URI = "content://com.sengami.appium_test_helper_android.provider/"

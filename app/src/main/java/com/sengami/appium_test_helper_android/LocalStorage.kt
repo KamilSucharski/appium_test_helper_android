@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 
 class LocalStorage(private val sharedPreferences: SharedPreferences) {
 
@@ -25,9 +26,28 @@ class LocalStorage(private val sharedPreferences: SharedPreferences) {
 
     @SuppressLint("ApplySharedPref")
     fun setTestModeEnabled(value: Boolean) {
+        Log.d("LocalStorage", "Setting test mode to $value")
         sharedPreferences
             .edit()
             .putBoolean(Consts.KEY_TEST_MODE_ENABLED, value)
             .commit()
+        Log.d("LocalStorage", "Test mode set")
+    }
+
+    fun getPackageNames(): List<String> {
+        return sharedPreferences
+            .getStringSet(Consts.KEY_PACKAGE_NAMES, emptySet())
+            ?.toList()
+            ?: emptyList()
+    }
+
+    @SuppressLint("ApplySharedPref")
+    fun setPackageNames(packageNames: List<String>) {
+        Log.d("LocalStorage", "Setting package names to $packageNames")
+        sharedPreferences
+            .edit()
+            .putStringSet(Consts.KEY_PACKAGE_NAMES, packageNames.toSet())
+            .commit()
+        Log.d("LocalStorage", "Package names set")
     }
 }

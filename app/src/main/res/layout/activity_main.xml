@@ -32,6 +32,22 @@
                 android:layout_height="1dp"
                 android:background="@android:color/black" />
 
+            <EditText
+                android:id="@+id/package_names_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:hint="@string/package_names_instructions"
+                android:importantForAutofill="no"
+                android:inputType="textVisiblePassword|textMultiLine"
+                android:lines="5" />
+
+            <Button
+                android:id="@+id/save_package_names_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/save_package_names" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
