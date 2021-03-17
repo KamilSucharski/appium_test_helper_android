@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Appium Test Helper</string>
+    <string name="test_mode">Test mode</string>
+    <string name="error_content_provider">Cannot register Bounty Test Lab.</string>
+</resources>

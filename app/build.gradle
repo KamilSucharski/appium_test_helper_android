@@ -1,0 +1,81 @@
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-kapt"
+
+Properties props = new Properties()
+def keystoreProperties = file("keystore.properties")
+if (keystoreProperties.exists()) {
+    props.load(new FileInputStream(keystoreProperties))
+}
+
+android {
+    defaultConfig {
+        minSdkVersion project.ANDROID_VERSION_MINIMAL.toInteger()
+        compileSdkVersion project.ANDROID_VERSION_TARGET.toInteger()
+        targetSdkVersion project.ANDROID_VERSION_TARGET.toInteger()
+
+        def version_major = project.VERSION_MAJOR.toInteger()
+        def version_minor = project.VERSION_MINOR.toInteger()
+        def version_patch = project.VERSION_PATCH.toInteger()
+
+        versionName String.format("%s.%s.%s", version_major, version_minor, version_patch)
+        versionCode version_major * 1000000 + version_minor * 1000 + version_patch
+
+        applicationId = "com.sengami.appium_test_helper_android"
+        project.archivesBaseName = "appium-test-helper-android-${versionName}".toString()
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("${props.getProperty("release.key.store", "debug_keystore.jks")}")
+            storePassword "${props.getProperty("release.key.store.password", "android")}"
+            keyAlias "${props.getProperty("release.key.alias", "androiddebugkey")}"
+            keyPassword "${props.getProperty("release.key.alias.password", "android")}"
+            v1SigningEnabled = true
+            v2SigningEnabled = true
+        }
+        debug {
+            storeFile file("debug_keystore.jks")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            proguardFile getDefaultProguardFile("proguard-android-optimize.txt")
+            proguardFiles fileTree(dir: "../proguard", include: ["*.pro"]).asList().toArray()
+            minifyEnabled true
+            shrinkResources true
+        }
+
+        debug {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            shrinkResources false
+        }
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.31"
+}

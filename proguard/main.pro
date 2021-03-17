@@ -1,0 +1,3 @@
+-ignorewarnings
+-dontwarn com.sengami.**
+-keepclassmembers class com.sengami.** { *; }
