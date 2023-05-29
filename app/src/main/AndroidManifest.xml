@@ -8,9 +8,9 @@
         tools:ignore="QueryAllPackagesPermission" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
-        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
@@ -20,7 +20,9 @@
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:exported="true"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -40,7 +42,7 @@
         <receiver
             android:name=".ToastBroadcastReceiver"
             android:enabled="true"
-            tools:ignore="ExportedReceiver">
+            android:exported="true">
             <intent-filter android:priority="999">
                 <action android:name="com.sengami.appium_test_helper_android.toast" />
             </intent-filter>
@@ -49,7 +51,7 @@
         <receiver
             android:name=".VibrationBroadcastReceiver"
             android:enabled="true"
-            tools:ignore="ExportedReceiver">
+            android:exported="true">
             <intent-filter android:priority="999">
                 <action android:name="com.sengami.appium_test_helper_android.vibration" />
             </intent-filter>

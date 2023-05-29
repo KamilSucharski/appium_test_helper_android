@@ -11,9 +11,11 @@ import android.widget.Toast
  */
 class ToastBroadcastReceiver : BroadcastReceiver() {
 
-    override fun onReceive(context: Context, intent: Intent) = Toast.makeText(
-        context,
-        intent.getStringExtra(Consts.TOAST_MESSAGE_KEY),
-        Toast.LENGTH_LONG
-    ).show()
+    override fun onReceive(context: Context, intent: Intent) {
+        Toast.makeText(
+            context,
+            intent.getStringExtra(Consts.TOAST_MESSAGE_KEY),
+            Toast.LENGTH_LONG
+        ).show()
+    }
 }

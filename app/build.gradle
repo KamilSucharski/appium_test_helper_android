@@ -9,6 +9,8 @@ if (keystoreProperties.exists()) {
 }
 
 android {
+    namespace "com.sengami.appium_test_helper_android"
+
     defaultConfig {
         minSdkVersion project.ANDROID_VERSION_MINIMAL.toInteger()
         compileSdkVersion project.ANDROID_VERSION_TARGET.toInteger()
@@ -63,12 +65,12 @@ android {
     }
 
     compileOptions {
-        targetCompatibility JavaVersion.VERSION_1_8
-        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 
     lintOptions {
@@ -77,5 +79,5 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.31"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.8.21"
 }
