@@ -2,6 +2,7 @@ package com.sengami.appium_test_helper_android
 
 import android.annotation.TargetApi
 import android.app.*
+import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.content.Intent
 import android.os.IBinder
 
@@ -20,7 +21,7 @@ class NotificationService : Service() {
 
         val deletePendingIntent = Intent(this, NotificationService::class.java)
             .putExtra(Consts.EXTRA_BOOLEAN_STOP_COMMAND, true)
-            .let { PendingIntent.getService(this, 0, it, 0) }
+            .let { PendingIntent.getService(this, 0, it, FLAG_IMMUTABLE) }
 
         val notificationChannelId = duration.toString()
         val notificationChannel = NotificationChannel(
