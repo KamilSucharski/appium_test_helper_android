@@ -4,6 +4,7 @@ import android.annotation.TargetApi
 import android.app.*
 import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.content.Intent
+import android.os.Build
 import android.os.IBinder
 
 class NotificationService : Service() {
@@ -39,6 +40,11 @@ class NotificationService : Service() {
             .setContentIntent(deletePendingIntent)
             .setSmallIcon(R.mipmap.ic_launcher)
             .setAutoCancel(true)
+            .apply {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE)
+                }
+            }
             .build()
 
         startForeground(1, notification)
@@ -49,4 +55,10 @@ class NotificationService : Service() {
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
+
+    override fun onTimeout(startId: Int) {
+        super.onTimeout(startId)
+        stopSelf()
+    }
+
 }

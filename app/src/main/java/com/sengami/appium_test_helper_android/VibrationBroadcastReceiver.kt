@@ -19,7 +19,7 @@ class VibrationBroadcastReceiver : BroadcastReceiver() {
         .run { getSystemService(VIBRATOR_SERVICE) as Vibrator }
         .run {
             val duration = intent.getLongExtra(Consts.VIBRATION_DURATION_KEY, 1000)
-            if (Build.VERSION.SDK_INT >= 26) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val serviceIntent = Intent(context, NotificationService::class.java)
                 serviceIntent.putExtra(Consts.EXTRA_LONG_VIBRATION_DURATION, duration)
                 context.startForegroundService(serviceIntent)
