@@ -20,15 +20,15 @@ class NotificationService : Service() {
             ?.getLongExtra(Consts.EXTRA_LONG_VIBRATION_DURATION, 0L)
             ?: 0L
 
-        val deletePendingIntent = Intent(this, NotificationService::class.java)
-            .putExtra(Consts.EXTRA_BOOLEAN_STOP_COMMAND, true)
-            .let { PendingIntent.getService(this, 0, it, FLAG_IMMUTABLE) }
+        val pendingIntent = Intent(this, MainActivity::class.java)
+            .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            .let { PendingIntent.getActivity(this, 0, it, FLAG_IMMUTABLE) }
 
         val notificationChannelId = duration.toString()
         val notificationChannel = NotificationChannel(
             notificationChannelId,
             notificationChannelId,
-            NotificationManager.IMPORTANCE_HIGH
+            NotificationManager.IMPORTANCE_DEFAULT
         )
         notificationChannel.vibrationPattern = longArrayOf(0, duration)
 
@@ -37,14 +37,9 @@ class NotificationService : Service() {
 
         val notification = Notification.Builder(this, notificationChannel.id)
             .setContentTitle(applicationContext.getString(R.string.vibration_notification, duration))
-            .setContentIntent(deletePendingIntent)
-            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentIntent(pendingIntent)
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setAutoCancel(true)
-            .apply {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                    setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE)
-                }
-            }
             .build()
 
         startForeground(1, notification)
@@ -54,11 +49,6 @@ class NotificationService : Service() {
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
-    }
-
-    override fun onTimeout(startId: Int) {
-        super.onTimeout(startId)
-        stopSelf()
     }
 
 }

@@ -60,7 +60,13 @@
 
         <service
             android:name=".NotificationService"
-            android:foregroundServiceType="shortService" />
+            android:foregroundServiceType="specialUse">
+
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Displaying notifications sent by an Appium test" />
+
+        </service>
 
     </application>
 

@@ -37,11 +37,21 @@ class MainActivity : Activity() {
         )
 
         val localStorage = LocalStorage.fromContext(this)
-        binding.testModeSwitch.isChecked = localStorage.isTestModeEnabled()
+        onTestModeChanged(
+            binding = binding,
+            enabled = localStorage.isTestModeEnabled(),
+            localStorage = localStorage
+        )
+
         binding.testModeContainer.setOnClickListener {
             val newState = !localStorage.isTestModeEnabled()
             localStorage.setTestModeEnabled(newState)
-            binding.testModeSwitch.isChecked = newState
+
+            onTestModeChanged(
+                binding = binding,
+                enabled = newState,
+                localStorage = localStorage
+            )
         }
     }
 
@@ -73,6 +83,23 @@ class MainActivity : Activity() {
     @SuppressWarnings("deprecation")
     private fun getInstalledPackagesLegacy(): List<PackageInfo> {
         return packageManager.getInstalledPackages(0)
+    }
+
+    private fun onTestModeChanged(
+        binding: ActivityMainBinding,
+        enabled: Boolean,
+        localStorage: LocalStorage
+    ) {
+        localStorage.setTestModeEnabled(enabled)
+        binding.testModeSwitch.isChecked = enabled
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val intent = Intent(this, NotificationService::class.java)
+            when (enabled) {
+                true -> startForegroundService(intent)
+                false -> stopService(intent)
+            }
+        }
     }
 
 }

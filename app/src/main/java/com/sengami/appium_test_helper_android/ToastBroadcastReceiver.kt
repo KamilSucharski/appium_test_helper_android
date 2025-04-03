@@ -18,4 +18,5 @@ class ToastBroadcastReceiver : BroadcastReceiver() {
             Toast.LENGTH_LONG
         ).show()
     }
+
 }
